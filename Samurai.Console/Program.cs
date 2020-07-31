@@ -15,12 +15,25 @@ namespace Samurai.Console
 
             context.Database.EnsureCreated();
             GetSamurais("Before Add:");
-            AddSamurai();
+            AddMulitSamurai();
             GetSamurais("After Add:");
             System.Console.Write("Press any key...");
             System.Console.ReadKey();
 
         }
+
+        private static void AddMulitSamurai()
+        {
+
+            var samurai = new SamuraiApp.Domain.Samurai { Name = "Sampson2" };
+            var samurai2 = new SamuraiApp.Domain.Samurai { Name = "Sampson3" };
+            var samurai3 = new SamuraiApp.Domain.Samurai { Name = "Sampson4" };
+            var samurai4 = new SamuraiApp.Domain.Samurai { Name = "Sampson5" };
+
+            context.Samurais.AddRange(samurai, samurai2, samurai3, samurai4);
+            context.SaveChanges();
+        }
+
 
         private static void AddSamurai()
         {
