@@ -24,15 +24,7 @@ namespace SamuraiApp.Data
 
 
 
-        public static readonly ILoggerFactory ConsoleLoggerFactory
-        = LoggerFactory.Create(builder =>
-        {
-            builder
-           .AddFilter((category, level) =>
-               category == DbLoggerCategory.Database.Command.Name
-               && level == LogLevel.Information)
-           .AddConsole();
-        });
+     
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
