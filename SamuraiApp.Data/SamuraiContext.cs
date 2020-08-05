@@ -15,6 +15,15 @@ namespace SamuraiApp.Data
 
         public DbSet<Battle> Battles { get; set; }
 
+
+        public SamuraiContext(DbContextOptions<SamuraiContext> options)
+            :base(options)
+        {
+            ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
+        }
+
+
+
         public static readonly ILoggerFactory ConsoleLoggerFactory
         = LoggerFactory.Create(builder =>
         {
@@ -25,18 +34,6 @@ namespace SamuraiApp.Data
            .AddConsole();
         });
 
-
-
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-
-            optionsBuilder
-                .UseLoggerFactory(ConsoleLoggerFactory)
-                .UseSqlServer("Data Source = (localdb)\\MSSQLLocalDB; Initial Catalog = SamuraiAppData");
-
-
-        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

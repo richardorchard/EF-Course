@@ -7,13 +7,13 @@ namespace Samurai.Console
 {
     class Program
     {
-        private static SamuraiContext context = new SamuraiContext();
+        private static SamuraiContext _context = new SamuraiContext();
 
 
         static void Main(string[] args)
         {
 
-            context.Database.EnsureCreated();
+            _context.Database.EnsureCreated();
             GetSamurais("Before Add:");
             AddMulitSamurai();
             GetSamurais("After Add:");
@@ -30,8 +30,8 @@ namespace Samurai.Console
             var samurai3 = new SamuraiApp.Domain.Samurai { Name = "Sampson4" };
             var samurai4 = new SamuraiApp.Domain.Samurai { Name = "Sampson5" };
 
-            context.Samurais.AddRange(samurai, samurai2, samurai3, samurai4);
-            context.SaveChanges();
+            _context.Samurais.AddRange(samurai, samurai2, samurai3, samurai4);
+            _context.SaveChanges();
         }
 
 
@@ -39,13 +39,13 @@ namespace Samurai.Console
         {
 
             var samurai = new SamuraiApp.Domain.Samurai { Name = "Sampson" };
-            context.Samurais.Add(samurai);
-            context.SaveChanges();
+            _context.Samurais.Add(samurai);
+            _context.SaveChanges();
         }
 
         private static void GetSamurais(string text)
         {
-            var samurais = context.Samurais.ToList();
+            var samurais = _context.Samurais.ToList();
             System.Console.WriteLine($"{text}: Samurai count is {samurais.Count}");
             foreach (var samurai in samurais)
             {
