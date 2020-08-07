@@ -16,6 +16,12 @@ namespace SamuraiApp.Data
         public DbSet<Battle> Battles { get; set; }
 
 
+        public SamuraiContext()
+        {
+
+        }
+
+
         public SamuraiContext(DbContextOptions<SamuraiContext> options)
             :base(options)
         {
